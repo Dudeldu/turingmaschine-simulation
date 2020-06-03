@@ -20,6 +20,7 @@ FINAL_STATE_NAME = "FINAL"
 BACKUP_SYMBOLS = {"0", "1", "2", "B",
                   "A", "B", "C", "#"}
 
+""" on_status on_sign direction new_sign new_state """
 
 def read_file(filename: str) -> str:
     with open(filename, "r") as file:
@@ -43,16 +44,16 @@ def parse(lines):
         sign = tokens[3]
         state = tokens[4]
 
-        if on_state == "FINAL":
+        if on_state == FINAL_STATE_NAME:
             logger.error("You are not allowed to define the `FINAL` state as it is reserved for program!")
             exit()
 
-        if state != FINAL_STATE_NAME:
-            append_if_not_in_list(state, all_states)
-
-        append_if_not_in_list(sign, all_signs)
         append_if_not_in_list(on_state, all_states)
         append_if_not_in_list(on_sign, all_signs)
+
+        if state != FINAL_STATE_NAME:
+            append_if_not_in_list(state, all_states)
+        append_if_not_in_list(sign, all_signs)
 
         if on_state not in commands.keys():
             commands[on_state] = {}
@@ -75,7 +76,7 @@ def parse(lines):
 def sort_commands(commands):
     # In order to fill out the entire 4 columns, add backup symbols
     while len(all_signs) < 4:
-        all_signs.append(all_signs[0])
+        all_signs.append(-1)
 
     out = []
     for state in all_states:
@@ -83,7 +84,7 @@ def sort_commands(commands):
             if sign in commands[state].keys():
                 out.append(commands[state][sign])
             else:
-                out.append([0, 0, 0])
+                out.append([1, 3, 31])
 
     return out
 

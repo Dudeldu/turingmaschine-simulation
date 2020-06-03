@@ -1,0 +1,5 @@
+status0 0 > 1 status1
+status1 0 > 1 status2
+status2 0 < 1 status3
+status3 1 < 1 status3
+status3 0 > 0 FINAL
