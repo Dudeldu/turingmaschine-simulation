@@ -3,7 +3,7 @@ STATE_POINTER EQU R0
 TAPE_POINTER EQU DPTR
 ; Load state table
     MOV R0, #10h ; Current memory pointer
-    MOV R1, #50h ; Memory left
+    MOV R1, #70h ; Memory left
 main_read:
     MOV A, P0
     CJNE R1, #0h, read
@@ -14,20 +14,7 @@ read:
     DEC R1 ; less memory left
     JMP main_read
 
- 
-
 idle:
-;    MOV DPTR, #0h
-;clear_tape:
-;    MOV A, #0h
-;    MOVX @DPTR, A
-;    INC DPTR
-;    MOV A, DPH
-;    ANL A, DPL
-;    ANL A, #11111111b
-;    INC A
-;    JNZ clear_tape
-    
     ; Set initial state to 0
     MOV STATE_POINTER, #0h
     ; Set initial tape pointer to 0
@@ -158,4 +145,3 @@ BACK:
     
 end: JMP end
     END
-
