@@ -51,7 +51,18 @@ Funktion | Richtung | Zeichen |   Neuer Zustand   |
 
 ## Ablauf
 
-- Initialisierung
-	- Zustandstabelle via Dateieingabe laden
-	- Band löschen
-- Programmausführung
+1. Initialisieren
+ 	- Lesen der Turingtabelle
+ 	- (Löschen/Vorbereiten des Turingbands)
+ 	- Initialen Zustand und Zeiger auf dem Turingband setzen
+2. Schritt
+ 	- Lesen der Eingabe vom Turingband
+ 	- Aktion aus der Tabelle lesen
+ 	- Zeichen schreiben
+ 	- Turingbandzeiger verschieben
+ 	- Zustandswechsel
+ 	- Wiederholen
+3. Ausgabe
+ 	- Lesen der nächsten Zeichen vom Turingband
+ 	- Ausgabe der Zeichen im LCD Display
+
